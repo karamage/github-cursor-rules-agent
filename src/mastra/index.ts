@@ -10,10 +10,12 @@ export const mastra = new Mastra({
   workflows: { weatherWorkflow },
   agents: { weatherAgent },
   scorers: { toolCallAppropriatenessScorer, completenessScorer, translationScorer },
+  /* VercelではLibSQLのファイルストレージが使えないため、
   storage: new LibSQLStore({
     // stores observability, scores, ... into memory storage, if it needs to persist, change to file:../mastra.db
     url: ":memory:",
   }),
+  */
   logger: new PinoLogger({
     name: 'Mastra',
     level: 'info',
