@@ -1,8 +1,8 @@
 import { createTool } from "@mastra/core/tools";
 import { z } from "zod";
-import { LibSQLVector } from "@mastra/core/vector/libsql";
+import { LibSQLVector } from "@mastra/libsql";
 import { embed } from "ai";
-import { googleEmbeddingModel } from "../../models";
+import { openai } from "@ai-sdk/openai";
 
 /**
  * ベクトルデータベースからクエリを実行するツール
@@ -44,9 +44,12 @@ export const vectorQueryTool = createTool({
             });
 
             try {
+                // OpenAI embedding model を作成
+                const embeddingModel = openai.embedding("text-embedding-3-small");
+
                 // クエリをベクトル化
                 const { embedding } = await embed({
-                    model: googleEmbeddingModel,
+                    model: embeddingModel,
                     value: query,
                 });
 
