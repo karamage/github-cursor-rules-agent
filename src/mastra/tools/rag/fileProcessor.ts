@@ -4,7 +4,7 @@ import fs from "fs/promises";
 import path from "path";
 import { MDocument } from "@mastra/rag";
 import { embedMany } from "ai";
-import { LibSQLVector } from "@mastra/core/vector/libsql";
+import { LibSQLVector } from "@mastra/libsql";
 import { openai } from "@ai-sdk/openai";
 
 /**
